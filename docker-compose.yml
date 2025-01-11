@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      target: api
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+    
+  worker:
+    build:
+      context: .
+      target: worker
+    depends_on:
+      - api 
